@@ -14,10 +14,17 @@ namespace DonutWebsite
         SqlConnection conn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True");
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!Page.IsPostBack)
+            if(Session["username"] == null)
             {
-                PPDate.Text = DateTime.Now.ToString(); 
+                Response.Redirect("HomePage.aspx");
+            } else
+            {
+                if (!Page.IsPostBack)
+                {
+                    PPDate.Text = DateTime.Now.ToString();
+                }
             }
+
         }
 
         protected void btnPublish_Click(object sender, EventArgs e)
